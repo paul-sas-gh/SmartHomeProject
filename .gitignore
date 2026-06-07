@@ -1,1 +1,6 @@
 /.idea/
+/wi-app/node_modules/
+/GeminiApiKey.txt
+.env
+**/__pycache__/
+*.pyc

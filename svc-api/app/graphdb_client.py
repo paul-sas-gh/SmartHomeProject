@@ -30,6 +30,8 @@ logger = logging.getLogger(__name__)
 
 _SH_ONT = "http://smarthome.org/ontology#"
 _SH_INST = "http://smarthome.org/instance#"
+_SH_SPG = "http://smarthome.org/smarthome.spg#"
+_ADOXX_MM = "https://www.adoxx.org/mm#"
 
 _SPARQL_PREFIXES = f"""
 PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -38,6 +40,8 @@ PREFIX owl:  <http://www.w3.org/2002/07/owl#>
 PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
 PREFIX sh:   <{_SH_ONT}>
 PREFIX shi:  <{_SH_INST}>
+PREFIX sh_spg: <{_SH_SPG}>
+PREFIX mm:   <{_ADOXX_MM}>
 """.strip()
 
 
@@ -221,90 +225,96 @@ def run_sparql_query(repo_name: str, query: str) -> dict[str, Any]:
 
 PREDEFINED_QUERIES: dict[int, dict[str, str]] = {
     1: {
-        "name": "Actuatoare dintr-un Room (LivingRoom)",
-        "description": "Returnează toate actuatoarele localizate în Living Room.",
+        "name": "Toate dispozitivele din model (Actuatoare, Senzori, Hub-uri)",
+        "description": "Returnează toate dispozitivele definite în modelul structural, grupate pe tip.",
         "sparql": """
-SELECT ?device ?label
+SELECT ?device ?label ?type
 WHERE {
-  ?device rdf:type sh:Actuator .
-  ?device sh:locatedIn shi:LivingRoom .
-  OPTIONAL { ?device rdfs:label ?label }
+  ?device rdf:type ?type .
+  ?device rdfs:label ?label .
+  FILTER(?type IN (sh_spg:o_Actuator, sh_spg:o_Sensor, sh_spg:o_Smart%20Hub))
 }
-ORDER BY ?label
+ORDER BY ?type ?label
 """.strip(),
     },
     2: {
-        "name": "Actuatoare + informații externe (brand, price)",
-        "description": "Returnează actuatoarele din Living Room cu datele de brand și preț din OntoRefine.",
+        "name": "Dispozitive + Atribute comerciale (Brand, Preț)",
+        "description": "Combină datele structurale cu datele din CSV (brand, preț) prin corelarea numelor.",
         "sparql": """
-SELECT ?device ?label ?brand ?price
+SELECT ?label ?brand ?price ?energyClass
 WHERE {
-  ?device rdf:type sh:Actuator .
-  ?device sh:locatedIn shi:LivingRoom .
-  ?device sh:brand ?brand .
-  ?device sh:price ?price .
-  OPTIONAL { ?device rdfs:label ?label }
+  ?deviceModel rdfs:label ?label .
+  ?deviceModel rdf:type ?type .
+  FILTER(?type IN (sh_spg:o_Actuator, sh_spg:o_Sensor, sh_spg:o_Smart%20Hub))
+  
+  ?deviceComm sh:brand ?brand ;
+              sh:price ?price ;
+              sh:energyClass ?energyClass .
+  FILTER(str(?deviceComm) = concat('http://smarthome.org/instance#', str(?label)))
 }
-ORDER BY ?label
+ORDER BY DESC(?price)
 """.strip(),
     },
     3: {
-        "name": "Pași din rutină și secvența lor (hasNext)",
-        "description": "Returnează toate perechile de pași consecutive din rutine.",
+        "name": "Smart Hub-uri și dispozitivele conectate",
+        "description": "Afișează ce dispozitive sunt controlate de fiecare Smart Hub conform relațiilor de comunicare.",
         "sparql": """
-SELECT ?step1 ?label1 ?step2 ?label2
+SELECT ?hubLabel ?deviceLabel
 WHERE {
-  ?step1 sh:hasNext ?step2 .
-  OPTIONAL { ?step1 rdfs:label ?label1 }
-  OPTIONAL { ?step2 rdfs:label ?label2 }
+  ?hub rdf:type sh_spg:o_Smart%20Hub ; rdfs:label ?hubLabel .
+  ?rel rdf:type sh_spg:r_Communicates%20With ;
+       mm:from ?hub ;
+       mm:to ?device .
+  ?device rdfs:label ?deviceLabel .
 }
-ORDER BY ?label1
+ORDER BY ?hubLabel
 """.strip(),
     },
     4: {
-        "name": "Acțiuni și actuatoarele utilizate",
-        "description": "Returnează toate acțiunile din rutine împreună cu actuatoarele pe care le necesită.",
+        "name": "Distribuția dispozitivelor pe Clase Energetice",
+        "description": "Analizează eficiența energetică a dispozitivelor din casă, grupându-le pe clase (A+++, A++, etc.).",
         "sparql": """
-SELECT ?action ?actionLabel ?device ?deviceLabel
+SELECT ?energyClass (COUNT(?device) AS ?count)
 WHERE {
-  ?action rdf:type sh:Action .
-  ?action sh:requiresActuator ?device .
-  OPTIONAL { ?action rdfs:label ?actionLabel }
-  OPTIONAL { ?device rdfs:label ?deviceLabel }
+  ?device sh:energyClass ?energyClass .
 }
-ORDER BY ?actionLabel
+GROUP BY ?energyClass
+ORDER BY ?energyClass
 """.strip(),
     },
     5: {
-        "name": "Camere unde au loc acțiuni",
-        "description": "Returnează toate acțiunile și camera în care se desfășoară.",
+        "name": "Dispozitive cu consum ridicat / Preț mare",
+        "description": "Selectează dispozitivele scumpe (> 500) și clasa lor energetică.",
         "sparql": """
-SELECT ?action ?actionLabel ?room ?roomLabel
+SELECT ?label ?brand ?price ?energyClass
 WHERE {
-  ?action rdf:type sh:Action .
-  ?action sh:takesPlaceIn ?room .
-  OPTIONAL { ?action rdfs:label ?actionLabel }
-  OPTIONAL { ?room rdfs:label ?roomLabel }
+  ?deviceComm sh:brand ?brand ;
+              sh:price ?price ;
+              sh:energyClass ?energyClass .
+  FILTER(?price > 500)
+  BIND(strafter(str(?deviceComm), "#") AS ?label)
 }
-ORDER BY ?actionLabel
+ORDER BY DESC(?price)
 """.strip(),
     },
     6: {
-        "name": "Integrare completă: acțiune + actuator + cameră + preț",
-        "description": "Query bonus care combină date NLP, model și date externe OntoRefine.",
+        "name": "Integrare Completă: Hub -> Dispozitiv -> Brand -> Preț",
+        "description": "Query complex care traversează ierarhia de control și extrage toate detaliile disponibile.",
         "sparql": """
-SELECT ?action ?actionLabel ?device ?deviceLabel ?room ?roomLabel ?price ?brand
+SELECT ?hubLabel ?deviceLabel ?brand ?price ?energyClass
 WHERE {
-  ?action rdf:type sh:Action .
-  ?action sh:requiresActuator ?device .
-  ?action sh:takesPlaceIn ?room .
-  ?device sh:price ?price .
-  ?device sh:brand ?brand .
-  OPTIONAL { ?action rdfs:label ?actionLabel }
-  OPTIONAL { ?device rdfs:label ?deviceLabel }
-  OPTIONAL { ?room rdfs:label ?roomLabel }
+  ?hub rdf:type sh_spg:o_Smart%20Hub ; rdfs:label ?hubLabel .
+  ?rel rdf:type sh_spg:r_Communicates%20With ;
+       mm:from ?hub ;
+       mm:to ?device .
+  ?device rdfs:label ?deviceLabel .
+  
+  ?deviceComm sh:brand ?brand ;
+              sh:price ?price ;
+              sh:energyClass ?energyClass .
+  FILTER(str(?deviceComm) = concat('http://smarthome.org/instance#', str(?deviceLabel)))
 }
-ORDER BY ?actionLabel
+ORDER BY ?hubLabel ?price
 """.strip(),
     },
 }
@@ -341,3 +351,70 @@ def run_predefined_query(repo_name: str, query_id: int) -> dict[str, Any]:
         "result_count": len(bindings),
         "results": bindings,
     }
+
+
+def get_repository_turtle(repo_name: str) -> str:
+    """
+    Exportă întreg repository-ul în format Turtle.
+    Folosește endpoint-ul /repositories/{repo}/statements cu Accept: text/turtle.
+    """
+    url = f"{_base_url()}/repositories/{repo_name}/statements"
+    headers = {"Accept": "text/turtle"}
+    try:
+        resp = requests.get(url, headers=headers, timeout=60)
+        resp.raise_for_status()
+        logger.info("Export Turtle reușit pentru repository '%s' (%d bytes).", repo_name, len(resp.content))
+        return resp.text
+    except requests.RequestException as exc:
+        logger.error("Eroare la exportul Turtle din '%s': %s", repo_name, exc)
+        raise
+
+
+def get_all_entities(repo_name: str) -> list[dict[str, Any]]:
+    """
+    Extrage toate entitățile principale (Senzori, Actuatoare, Hub-uri, Camere) din GraphDB.
+    """
+    query = f"""
+{_SPARQL_PREFIXES}
+SELECT ?uri ?label ?type
+WHERE {{
+  {{ ?uri rdf:type sh_spg:o_Room . }}
+  UNION
+  {{ ?uri rdf:type sh_spg:o_Sensor . }}
+  UNION
+  {{ ?uri rdf:type sh_spg:o_Actuator . }}
+  UNION
+  {{ ?uri rdf:type sh_spg:o_Smart%20Hub . }}
+  
+  ?uri rdfs:label ?label .
+  ?uri rdf:type ?type .
+  FILTER(?type IN (sh_spg:o_Room, sh_spg:o_Sensor, sh_spg:o_Actuator, sh_spg:o_Smart%20Hub))
+}}
+ORDER BY ?type ?label
+""".strip()
+    result = run_sparql_query(repo_name, query)
+    return result.get("results", {}).get("bindings", [])
+
+
+def get_all_relations(repo_name: str) -> list[dict[str, Any]]:
+    """
+    Extrage doar relațiile de tipul "Communicates With" din GraphDB.
+    """
+    query = f"""
+{_SPARQL_PREFIXES}
+SELECT ?s_label ?p_label ?o_label ?p
+WHERE {{
+  ?rel mm:from ?s ; 
+       mm:to ?o ; 
+       rdf:type ?p .
+  
+  ?s rdfs:label ?s_label .
+  ?o rdfs:label ?o_label .
+  
+  OPTIONAL {{ ?p rdfs:label ?p_label . }}
+  
+  FILTER(?p = sh_spg:r_Communicates%20With)
+}}
+""".strip()
+    result = run_sparql_query(repo_name, query)
+    return result.get("results", {}).get("bindings", [])

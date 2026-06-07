@@ -194,16 +194,19 @@ class EntityExtractor:
                 continue
 
             entity_type, uri_name = self._rule_map[rule_id]
-            dedup_key = f"{entity_type.value}__{uri_name}"
+            # Normalize uri_name for _alt patterns
+            clean_uri = uri_name.replace("_alt", "")
+            
+            dedup_key = f"{entity_type.value}__{clean_uri}"
             if dedup_key in seen:
                 continue
             seen.add(dedup_key)
 
-            entity = self._make_entity(entity_type, uri_name, span.text, span.text)
+            entity = self._make_entity(entity_type, clean_uri, span.text, span.text)
             entities.append(entity)
             logger.info(
                 "  [Matcher] %-30s %-14s ← '%s'",
-                uri_name, entity_type.value, span.text,
+                clean_uri, entity_type.value, span.text,
             )
 
         return entities

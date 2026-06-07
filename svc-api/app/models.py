@@ -177,6 +177,13 @@ class ExtractionResult(BaseModel):
 # Rezultat pipeline complet (utilizat în Faza 10)
 # ---------------------------------------------------------------------------
 
+class QueryResult(BaseModel):
+    """Rezultatul unei interogări SPARQL declanșate de text."""
+    query_id: int | None = None
+    query: str
+    results: list[dict] = Field(default_factory=list)
+
+
 class PipelineResult(BaseModel):
     """Rezultatul orchestrării complete a pipeline-ului."""
     extraction: ExtractionResult
@@ -184,3 +191,4 @@ class PipelineResult(BaseModel):
     triple_count: int = Field(default=0)
     graphdb_uploaded: bool = Field(default=False)
     llm_used: bool = Field(default=False)
+    query_result: QueryResult | None = None

@@ -15,7 +15,7 @@ from fastapi.responses import PlainTextResponse
 from pydantic import BaseModel
 
 from app.config import settings
-from app.graphdb_client import create_repository, upload_ttl
+from app.graphdb_client import create_repository, upload_ttl, get_repository_turtle
 from app.pipeline import get_state
 
 logger = logging.getLogger(__name__)
@@ -30,20 +30,27 @@ router = APIRouter(prefix="/graph", tags=["Graph"])
 @router.get(
     "/turtle",
     response_class=PlainTextResponse,
-    summary="Returnează graful curent ca Turtle",
+    summary="Returnează graful curent din GraphDB",
     responses={200: {"content": {"text/turtle": {}}}},
 )
 def get_turtle() -> str:
     """
-    Returnează conținutul Turtle al grafului generat de ultimul run al pipeline-ului.
+    Returnează conținutul Turtle al grafului stocat în repository-ul GraphDB configurat.
+    Ignoră starea in-memory a pipeline-ului.
     """
-    state = get_state()
-    if not state.ttl_content:
-        raise HTTPException(
-            status_code=404,
-            detail="Niciun graf disponibil. Rulează mai întâi POST /process sau POST /process/text.",
-        )
-    return PlainTextResponse(content=state.ttl_content, media_type="text/turtle")
+    repo = settings.graphdb_repository
+    try:
+        content = get_repository_turtle(repo)
+        if not content or content.strip() == "":
+            # Dacă GraphDB returnează un șir gol (repository gol), dăm 404
+            raise HTTPException(
+                status_code=404,
+                detail=f"Repository-ul '{repo}' este gol sau nu a fost găsit.",
+            )
+        return PlainTextResponse(content=content, media_type="text/turtle")
+    except Exception as exc:
+        logger.exception("Eroare la obținerea grafului din GraphDB: %s", exc)
+        raise HTTPException(status_code=502, detail=f"Eroare GraphDB: {exc}")
 
 
 # ---------------------------------------------------------------------------

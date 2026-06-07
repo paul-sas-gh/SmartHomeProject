@@ -74,6 +74,7 @@ class PredefinedQueryResponse(BaseModel):
     query_id: int
     query_name: str
     description: str
+    query: str
     result_count: int
     results: list[dict]
 
@@ -120,6 +121,7 @@ def run_predefined(
         query_id=query_id,
         query_name=meta["name"],
         description=meta["description"],
+        query=result.get("sparql", meta["sparql"]),
         result_count=result.get("result_count", len(simplified)),
         results=simplified,
     )

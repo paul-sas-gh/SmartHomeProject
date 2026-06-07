@@ -1,0 +1,1 @@
+Afișează brandul și prețul pentru dispozitivele din casă.

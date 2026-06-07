@@ -14,6 +14,7 @@ from fastapi import APIRouter, File, HTTPException, Query, UploadFile
 from pydantic import BaseModel
 
 from app.pipeline import run_pipeline
+from app.ai_service import ai_service
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +39,12 @@ class RelationOut(BaseModel):
     confidence: float
 
 
+class QueryResultOut(BaseModel):
+    query_id: int | None
+    query: str
+    results: list[dict]
+
+
 class ProcessResponse(BaseModel):
     source: str
     entity_count: int
@@ -47,6 +54,15 @@ class ProcessResponse(BaseModel):
     entities: list[EntityOut]
     relations: list[RelationOut]
     ttl_path: str
+    query_result: QueryResultOut | None = None
+
+
+class AIProcessResponse(BaseModel):
+    text: str
+    query: str
+    extraction: dict
+    results: list[dict]
+    error: str | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -58,6 +74,7 @@ async def process_file(
     file: UploadFile = File(..., description="Fișier text (.txt) cu descriere Smart Home"),
     upload: bool = Query(default=True, description="Uploadează graful în GraphDB după procesare"),
 ) -> ProcessResponse:
+    # ... restul funcției neschimbat
     """
     Primește un fișier .txt, rulează pipeline-ul NLP complet și returnează
     entitățile, relațiile și numărul de triple RDF generate.
@@ -117,6 +134,29 @@ def process_text(body: TextInput) -> ProcessResponse:
     return _build_response(result, source=body.source_name)
 
 
+@router.post("/ai/text", response_model=AIProcessResponse, summary="Procesează text prin agenți AI (Llama)")
+def process_text_ai(body: TextInput) -> AIProcessResponse:
+    """
+    Primește un text în limbaj natural, îl trimite la agentul Llama pentru
+    extracție și generare SPARQL, apoi execută query-ul în GraphDB.
+    """
+    if not body.text.strip():
+        raise HTTPException(status_code=422, detail="Câmpul 'text' este gol.")
+
+    try:
+        result = ai_service.process_with_ai(body.text)
+        return AIProcessResponse(
+            text=body.text,
+            query=result["query"],
+            extraction=result["extraction"],
+            results=result["results"],
+            error=result.get("error")
+        )
+    except Exception as exc:
+        logger.exception("Eroare procesare AI: %s", exc)
+        raise HTTPException(status_code=500, detail=f"Eroare procesare AI: {exc}")
+
+
 # ---------------------------------------------------------------------------
 # Helper
 # ---------------------------------------------------------------------------
@@ -140,6 +180,14 @@ def _build_response(result, source: str) -> ProcessResponse:
         )
         for r in result.extraction.relations
     ]
+    query_out = None
+    if result.query_result:
+        query_out = QueryResultOut(
+            query_id=result.query_result.query_id,
+            query=result.query_result.query,
+            results=result.query_result.results
+        )
+
     return ProcessResponse(
         source=source,
         entity_count=len(entities),
@@ -149,4 +197,5 @@ def _build_response(result, source: str) -> ProcessResponse:
         entities=entities,
         relations=relations,
         ttl_path=result.ttl_path,
+        query_result=query_out
     )

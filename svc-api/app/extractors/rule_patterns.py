@@ -19,12 +19,17 @@ deci ordinea din dict nu contează pentru corectitudinea extracției.
 # uri_name → listă de token dicts spaCy (atribut LOWER = lowercase insensibil la majuscule)
 
 ROOM_PATTERNS: dict[str, list[dict]] = {
-    "LivingRoom": [{"LOWER": "living"}, {"LOWER": "room"}],
-    "Kitchen":    [{"LOWER": "kitchen"}],
-    "EntryHall":  [{"LOWER": "entry"}, {"LOWER": "hall"}],
-    "Garage":     [{"LOWER": "garage"}],
-    "Bedroom":    [{"LOWER": "bedroom"}],
-    "Bathroom":   [{"LOWER": "bathroom"}],
+    "EntryRoom": [{"LOWER": "entryroom"}],
+    "EntryRoom_alt": [{"LOWER": "entry"}, {"LOWER": "room"}],
+    "KidsDorm1": [{"LOWER": "kidsdorm1"}],
+    "KidsDorm1_alt": [{"LOWER": "kids"}, {"LOWER": "dorm"}, {"LOWER": "1"}],
+    "KidsDorm2": [{"LOWER": "kidsdorm2"}],
+    "KidsDorm2_alt": [{"LOWER": "kids"}, {"LOWER": "dorm"}, {"LOWER": "2"}],
+    "LivingRoom": [{"LOWER": "livingroom"}],
+    "LivingRoom_alt": [{"LOWER": "living"}, {"LOWER": "room"}],
+    "ParentsDorm": [{"LOWER": "parentsdorm"}],
+    "ParentsDorm_alt": [{"LOWER": "parents"}, {"LOWER": "dorm"}],
+    "kitchen": [{"LOWER": "kitchen"}],
 }
 
 # ---------------------------------------------------------------------------
@@ -32,21 +37,20 @@ ROOM_PATTERNS: dict[str, list[dict]] = {
 # ---------------------------------------------------------------------------
 
 SENSOR_PATTERNS: dict[str, list[dict]] = {
-    # Senzori cu 3+ token-uri — vor câștiga la overlap față de Garage/FrontDoor singulare
-    "FrontDoorSensor": [
-        {"LOWER": "front"}, {"LOWER": "door"}, {"LOWER": "sensor"},
-    ],
-    "GarageDoorSensor": [
-        {"LOWER": "garage"}, {"LOWER": "door"}, {"LOWER": "sensor"},
-    ],
-    "TemperatureHumiditySensor": [
-        {"LOWER": "temperature"}, {"LOWER": "and"},
-        {"LOWER": "humidity"}, {"LOWER": "sensor"},
-    ],
-    # Senzori cu 2 token-uri
-    "PresenceSensor": [{"LOWER": "presence"}, {"LOWER": "sensor"}],
-    "MotionSensor":   [{"LOWER": "motion"}, {"LOWER": "sensor"}],
-    "SmokeSensor":    [{"LOWER": "smoke"}, {"LOWER": "sensor"}],
+    "MSensor0": [{"LOWER": "msensor0"}],
+    "MSensor1": [{"LOWER": "msensor1"}],
+    "MSensor2": [{"LOWER": "msensor2"}],
+    "MSensor3": [{"LOWER": "msensor3"}],
+    "MSensor4": [{"LOWER": "msensor4"}],
+    "MSensorEntry": [{"LOWER": "msensorentry"}],
+    "SmokeSensor": [{"LOWER": "smokesensor"}],
+    "TSensor1": [{"LOWER": "tsensor1"}],
+    "TSensor2": [{"LOWER": "tsensor2"}],
+    "TSensor3": [{"LOWER": "tsensor3"}],
+    "Tsensor0": [{"LOWER": "tsensor0"}],
+    # Generic patterns for natural language
+    "MotionSensor": [{"LOWER": "motion"}, {"LOWER": "sensor"}],
+    "TemperatureSensor": [{"LOWER": "temperature"}, {"LOWER": "sensor"}],
 }
 
 # ---------------------------------------------------------------------------
@@ -54,14 +58,35 @@ SENSOR_PATTERNS: dict[str, list[dict]] = {
 # ---------------------------------------------------------------------------
 
 ACTUATOR_PATTERNS: dict[str, list[dict]] = {
-    # 2 token-uri
-    "SmartTV":          [{"LOWER": "smart"}, {"LOWER": "tv"}],
-    "SmartSpeakers":    [{"LOWER": "smart"}, {"LOWER": "speakers"}],
-    "SmartLights":      [{"LOWER": "smart"}, {"LOWER": "lights"}],
-    "SmartBlinds":      [{"LOWER": "smart"}, {"LOWER": "blinds"}],
-    "SmartLock":        [{"LOWER": "smart"}, {"LOWER": "lock"}],
-    "SmartFridge":      [{"LOWER": "smart"}, {"LOWER": "fridge"}],
-    "BedroomThermostat":[{"LOWER": "bedroom"}, {"LOWER": "thermostat"}],
+    "AirCondtioner0": [{"LOWER": "aircondtioner0"}],
+    "AirCondtioner1": [{"LOWER": "aircondtioner1"}],
+    "AirCondtioner2": [{"LOWER": "aircondtioner2"}],
+    "AirCondtioner3": [{"LOWER": "aircondtioner3"}],
+    "Alarm0": [{"LOWER": "alarm0"}],
+    "Alarm1": [{"LOWER": "alarm1"}],
+    "CoffeMachine": [{"LOWER": "coffemachine"}],
+    "RoomLight0": [{"LOWER": "roomlight0"}],
+    "RoomLight1": [{"LOWER": "roomlight1"}],
+    "RoomLight2": [{"LOWER": "roomlight2"}],
+    "RoomLight3": [{"LOWER": "roomlight3"}],
+    "RoomLight4": [{"LOWER": "roomlight4"}],
+    "Shutter0": [{"LOWER": "shutter0"}],
+    "Shutter1": [{"LOWER": "shutter1"}],
+    "Shutter2": [{"LOWER": "shutter2"}],
+    "Shutter3": [{"LOWER": "shutter3"}],
+    "SmartTV0": [{"LOWER": "smarttv0"}],
+    "SmartTV1": [{"LOWER": "smarttv1"}],
+    "SmartTV2": [{"LOWER": "smarttv2"}],
+    "SmartTV3": [{"LOWER": "smarttv3"}],
+    "Speaker0": [{"LOWER": "speaker0"}],
+    "Speaker1": [{"LOWER": "speaker1"}],
+    "Speaker2": [{"LOWER": "speaker2"}],
+    "Speaker3": [{"LOWER": "speaker3"}],
+    "Speaker4": [{"LOWER": "speaker4"}],
+    # Generic patterns
+    "AirConditioner": [{"LOWER": "air"}, {"LOWER": "conditioner"}],
+    "Light": [{"LOWER": "light"}],
+    "TV": [{"LOWER": "tv"}],
 }
 
 # ---------------------------------------------------------------------------
@@ -69,11 +94,11 @@ ACTUATOR_PATTERNS: dict[str, list[dict]] = {
 # ---------------------------------------------------------------------------
 
 SMART_HUB_PATTERNS: dict[str, list[dict]] = {
-    "MultimediaHub": [{"LOWER": "multimedia"}, {"LOWER": "hub"}],
-    "ComfortHub":    [{"LOWER": "comfort"}, {"LOWER": "hub"}],
-    "HomeAutomationGateway": [
-        {"LOWER": "home"}, {"LOWER": "automation"}, {"LOWER": "gateway"},
-    ],
+    "SmartHub": [{"LOWER": "smart"}, {"LOWER": "hub"}],
+    "SmartHub1": [{"LOWER": "smart"}, {"LOWER": "hub"}, {"LOWER": "1"}],
+    "SmartHub2": [{"LOWER": "smart"}, {"LOWER": "hub2"}],
+    "SmartHub3": [{"LOWER": "smart"}, {"LOWER": "hub"}, {"LOWER": "3"}],
+    "SmartHub4": [{"LOWER": "smart"}, {"LOWER": "hub"}, {"LOWER": "4"}],
 }
 
 # ---------------------------------------------------------------------------
@@ -128,25 +153,25 @@ SPATIAL_PREPOSITIONS: list[str] = ["in the", "in", "at the", "at"]
 ACTION_REGEX_PATTERNS: list[tuple[str, str, str]] = [
     # "turns on the Smart Lights in the Entry Hall" → TurnLightsOn
     (
-        r"turns?\s+on\s+(?:the\s+)?Smart\s+Lights",
+        r"turns?\s+on\s+(?:the\s+)?(?:RoomLight|Smart\s+Lights)",
         "TurnLightsOn",
         "Turn on Smart Lights",
     ),
     # "turns on music in the Living Room" → TurnMusicOn
     (
-        r"turns?\s+on\s+music",
+        r"turns?\s+on\s+music|turns?\s+on\s+Speaker",
         "TurnMusicOn",
         "Turn on music",
     ),
     # "checks the temperature in the Bedroom" → CheckTemperature
     (
-        r"checks?\s+the\s+temperature",
+        r"checks?\s+the\s+temperature|checks?\s+TSensor",
         "CheckTemperature",
         "Check temperature",
     ),
     # "adjusts it through the Bedroom Thermostat" → AdjustTemperature
     (
-        r"adjusts?\s+it\s+through",
+        r"adjusts?\s+it\s+through|adjusts?\s+AirCondtioner",
         "AdjustTemperature",
         "Adjust temperature",
     ),

@@ -17,9 +17,11 @@ from app.config import settings
 from app.extractors.entity_extractor import get_extractor
 from app.extractors.relation_extractor import get_relation_extractor
 from app.graphdb_client import create_repository, upload_ttl
-from app.models import ExtractionResult, PipelineResult
+from app.models import ExtractionResult, PipelineResult, QueryResult
 from app.parsers.text_loader import load_text_from_string, load_text
 from app.rdf_writer import build_graph, merge_external_rdf, serialize_ttl
+from app.extractors.query_builder import build_query_from_text
+from app.graphdb_client import create_repository, upload_ttl, run_sparql_query
 
 logger = logging.getLogger(__name__)
 
@@ -102,7 +104,22 @@ def run_pipeline(
     triple_count = len(rdf_graph)
     logger.info("Triple RDF generate: %d — fișier: %s", triple_count, output_path)
 
-    # 8. Upload GraphDB
+    # 8. Execuție Query SPARQL bazat pe text (NL2SPARQL)
+    query_id, sparql_code = build_query_from_text(text, extraction=extraction)
+    query_result = None
+    if sparql_code:
+        try:
+            results = run_sparql_query(settings.graphdb_repository, sparql_code)
+            query_result = QueryResult(
+                query_id=query_id,
+                query=sparql_code,
+                results=results.get("results", {}).get("bindings", [])
+            )
+            logger.info("Interogare SPARQL executată cu succes.")
+        except Exception as exc:
+            logger.error("Interogare SPARQL eșuată: %s", exc)
+
+    # 9. Upload GraphDB (optional, mutăm după query dacă e cazul, dar păstrăm ordinea logică)
     uploaded = False
     if upload_to_graphdb:
         try:
@@ -113,13 +130,14 @@ def run_pipeline(
         except Exception as exc:
             logger.error("Upload GraphDB eșuat: %s", exc)
 
-    # 9. Actualizare state + return
+    # 10. Actualizare state + return
     result = PipelineResult(
         extraction=extraction,
         ttl_path=output_path,
         triple_count=triple_count,
         graphdb_uploaded=uploaded,
         llm_used=False,
+        query_result=query_result
     )
     _state.result = result
     _state.ttl_content = ttl_content

@@ -4,8 +4,6 @@ text_loader.py — Citire, curățare și împărțire în propoziții a fișier
 Utilizare:
     from app.parsers.text_loader import load_text, load_sentences
 
-    raw   = load_text("data/input/arriving_home.txt")
-    sents = load_sentences("data/input/arriving_home.txt")
 """
 
 import logging

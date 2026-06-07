@@ -1,0 +1,1 @@
+Afișează dispozitivele care au un preț mare, mai mare de 500.

@@ -10,10 +10,11 @@ from __future__ import annotations
 
 import logging
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from pydantic import BaseModel
 
-from app.pipeline import get_state
+from app.graphdb_client import get_all_entities, get_all_relations
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -26,18 +27,14 @@ router = APIRouter(tags=["Extraction"])
 
 class EntityOut(BaseModel):
     label: str
-    uri_name: str
-    entity_type: str
-    confidence: float
-    source_text: str
+    uri: str
+    type: str
 
 
 class RelationOut(BaseModel):
     subject: str
     predicate: str
     object: str
-    confidence: float
-    source_text: str
 
 
 class EntitiesResponse(BaseModel):
@@ -56,33 +53,25 @@ class RelationsResponse(BaseModel):
 # GET /entities
 # ---------------------------------------------------------------------------
 
-@router.get("/entities", response_model=EntitiesResponse, summary="Entitățile extrase")
+@router.get("/entities", response_model=EntitiesResponse, summary="Entitățile din GraphDB")
 def get_entities() -> EntitiesResponse:
     """
-    Returnează toate entitățile extrase în ultimul run al pipeline-ului.
-    Disponibile după cel puțin un apel la POST /process sau POST /process/text.
+    Returnează toate entitățile principale (Camere, Dispozitive) stocate în GraphDB.
     """
-    state = get_state()
-    if state.result is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Nicio extracție disponibilă. Rulează mai întâi POST /process sau POST /process/text.",
-        )
+    repo = settings.graphdb_repository
+    bindings = get_all_entities(repo)
 
-    extraction = state.result.extraction
     entities = [
         EntityOut(
-            label=e.label,
-            uri_name=e.uri_name,
-            entity_type=e.entity_type.value,
-            confidence=e.confidence,
-            source_text=e.source_text,
+            label=b["label"]["value"],
+            uri=b["uri"]["value"],
+            type=b["type"]["value"].split("#")[-1],
         )
-        for e in extraction.entities
+        for b in bindings
     ]
 
     return EntitiesResponse(
-        source=extraction.source_file,
+        source=f"GraphDB Repository: {repo}",
         total=len(entities),
         entities=entities,
     )
@@ -92,33 +81,43 @@ def get_entities() -> EntitiesResponse:
 # GET /relations
 # ---------------------------------------------------------------------------
 
-@router.get("/relations", response_model=RelationsResponse, summary="Relațiile extrase")
+@router.get("/relations", response_model=RelationsResponse, summary="Relațiile din GraphDB")
 def get_relations() -> RelationsResponse:
     """
-    Returnează toate relațiile extrase în ultimul run al pipeline-ului.
-    Disponibile după cel puțin un apel la POST /process sau POST /process/text.
+    Returnează toate relațiile (Communicates With, Contains) stocate în GraphDB.
     """
-    state = get_state()
-    if state.result is None:
-        raise HTTPException(
-            status_code=404,
-            detail="Nicio extracție disponibilă. Rulează mai întâi POST /process sau POST /process/text.",
-        )
+    repo = settings.graphdb_repository
+    bindings = get_all_relations(repo)
 
-    extraction = state.result.extraction
-    relations = [
-        RelationOut(
-            subject=r.subject,
-            predicate=r.predicate.value,
-            object=r.object,
-            confidence=r.confidence,
-            source_text=r.source_text,
+    relations = []
+    for b in bindings:
+        subject = b["s_label"]["value"]
+        obj = b["o_label"]["value"]
+        
+        # Predicatul poate veni din label sau din URI
+        if "p_label" in b:
+            predicate = b["p_label"]["value"]
+        else:
+            uri_p = b["p"]["value"]
+            if "#" in uri_p:
+                predicate = uri_p.split("#")[-1]
+            else:
+                predicate = uri_p.split("/")[-1]
+
+        # Decodare URL (ex: %20 -> spațiu)
+        from urllib.parse import unquote
+        predicate = unquote(predicate)
+
+        relations.append(
+            RelationOut(
+                subject=subject,
+                predicate=predicate,
+                object=obj,
+            )
         )
-        for r in extraction.relations
-    ]
 
     return RelationsResponse(
-        source=extraction.source_file,
+        source=f"GraphDB Repository: {repo}",
         total=len(relations),
         relations=relations,
     )
