@@ -1,0 +1,100 @@
+# devices_ontorefine.ttl
+# RDF generat din tabelul CSV data/external/devices.csv prin simulare OntoRefine.
+# Namespace instanțe: http://smarthome.org/instance#
+# Namespace ontologie: http://smarthome.org/ontology#
+#
+# Mapare OntoRefine:
+#   Device column  → rdfs:label + shi:UriName
+#   Brand column   → sh:brand (xsd:string)
+#   Price column   → sh:price (xsd:integer)
+#   EnergyClass    → sh:energyClass (xsd:string)
+#
+# Notă: uri_name-urile sunt normalizate la fel ca în entity_extractor.py
+#       (spații eliminate, CamelCase), astfel matching-ul pe rdfs:label funcționează.
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:   <http://smarthome.org/ontology#> .
+@prefix shi:  <http://smarthome.org/instance#> .
+
+# --- Smart Lights ---
+shi:SmartLights
+    a sh:Actuator ;
+    rdfs:label "Smart Lights"@en ;
+    sh:brand "Philips"^^xsd:string ;
+    sh:price "120"^^xsd:integer ;
+    sh:energyClass "A+"^^xsd:string .
+
+# --- Smart Speakers ---
+shi:SmartSpeakers
+    a sh:Actuator ;
+    rdfs:label "Smart Speakers"@en ;
+    sh:brand "Sony"^^xsd:string ;
+    sh:price "200"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .
+
+# --- Bedroom Thermostat (mapat la "Thermostat" din CSV) ---
+shi:BedroomThermostat
+    a sh:Actuator ;
+    rdfs:label "Bedroom Thermostat"@en ;
+    sh:brand "Nest"^^xsd:string ;
+    sh:price "300"^^xsd:integer ;
+    sh:energyClass "A++"^^xsd:string .
+
+# --- Smart TV ---
+shi:SmartTV
+    a sh:Actuator ;
+    rdfs:label "Smart TV"@en ;
+    sh:brand "Samsung"^^xsd:string ;
+    sh:price "800"^^xsd:integer ;
+    sh:energyClass "B"^^xsd:string .
+
+# --- Smart Fridge ---
+shi:SmartFridge
+    a sh:Actuator ;
+    rdfs:label "Smart Fridge"@en ;
+    sh:brand "LG"^^xsd:string ;
+    sh:price "1200"^^xsd:integer ;
+    sh:energyClass "A+++"^^xsd:string .
+
+# --- Smart Blinds ---
+shi:SmartBlinds
+    a sh:Actuator ;
+    rdfs:label "Smart Blinds"@en ;
+    sh:brand "Ikea"^^xsd:string ;
+    sh:price "180"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .
+
+# --- Smart Lock ---
+shi:SmartLock
+    a sh:Actuator ;
+    rdfs:label "Smart Lock"@en ;
+    sh:brand "Yale"^^xsd:string ;
+    sh:price "250"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .
+
+# --- Multimedia Hub ---
+shi:MultimediaHub
+    a sh:SmartHub ;
+    rdfs:label "Multimedia Hub"@en ;
+    sh:brand "Amazon"^^xsd:string ;
+    sh:price "150"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .
+
+# --- Comfort Hub ---
+shi:ComfortHub
+    a sh:SmartHub ;
+    rdfs:label "Comfort Hub"@en ;
+    sh:brand "Google"^^xsd:string ;
+    sh:price "170"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .
+
+# --- Smoke Sensor ---
+shi:SmokeSensor
+    a sh:Sensor ;
+    rdfs:label "Smoke Sensor"@en ;
+    sh:brand "Bosch"^^xsd:string ;
+    sh:price "90"^^xsd:integer ;
+    sh:energyClass "A"^^xsd:string .

@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  graphdb:
+    image: ontotext/graphdb:11.3.0
+    container_name: smarthome-graphdb
+    ports:
+      - "7200:7200"
+    volumes:
+      - graphdb_data:/opt/graphdb/home
+      - ./graphDB.license:/opt/graphdb/home/conf/graphdb.license:ro
+    environment:
+      GDB_HEAP_SIZE: "2g"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:7200/rest/repositories"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+#  svc-api:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    container_name: smarthome-svc-api
+#    ports:
+#      - "8000:8000"
+#    env_file:
+#      - .env
+#    environment:
+#      GRAPHDB_URL: "http://graphdb:7200"
+#    depends_on:
+#      graphdb:
+#        condition: service_healthy
+#    volumes:
+#      - ./data:/app/data
+#    restart: unless-stopped
+
+volumes:
+  graphdb_data:
