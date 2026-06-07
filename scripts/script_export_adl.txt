@@ -1,0 +1,12 @@
+# Definim calea unde dorim sa salvam fi?ierul .adl
+SET sFilePath:("C:\\Users\\pc\\Documents\\FSEGA\\Master\\An 1\\Tehnologii semantice si de relationare automata\\Proiec SmartHome ADOxx\\SmatHomeLibrary_Export1.adl")
+
+# Executam comanda de export
+CC "ImportExport" ADL_EXPORT (sFilePath) with-models with-mgroups with-attrprofs with-apgroups verbose
+
+# Verificam daca exportul a fost realizat cu succes
+IF (ecode = 0) {
+    CC "AdoScript" INFOBOX ("Exportul bibliotecii a fost realizat cu succes la: " + sFilePath)
+} ELSE {
+    CC "AdoScript" ERRORBOX ("Exportul a e?uat! Eroare: " + errtext)
+}

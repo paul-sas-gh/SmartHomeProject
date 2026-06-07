@@ -1,0 +1,240 @@
+# =========================================================================
+# SCRIPT 0AM OPTIMIZAT: Zig-Zag Alternant (Text Top/Bottom, Y: 8/11, Pas: 5cm)
+# =========================================================================
+
+CC "Modeling" GET_ACT_MODEL
+SET nModelId:(modelid)
+
+IF (nModelId = -1) {
+    CC "AdoScript" ERRORBOX ("Deschide?i o pânza noua!")
+    EXIT
+}
+
+CC "Core" DISCARD_MODEL modelid:(nModelId)
+CC "Core" LOAD_MODEL modelid:(nModelId)
+
+# --- EXTRAGERE CLASE ---
+CC "Core" GET_CLASS_ID classname:"Start Event"
+SET nStartClassId:(classid)
+CC "Core" GET_CLASS_ID classname:"Action"
+SET nActionClassId:(classid)
+CC "Core" GET_CLASS_ID classname:"Verification"
+SET nVerificationClassId:(classid)
+CC "Core" GET_CLASS_ID classname:"End Event"
+SET nEndClassId:(classid)
+CC "Core" GET_CLASS_ID classname:"Flow"
+SET nFlowClassId:(classid)
+
+# --- SECURIZARE TIPURI DE DATE ---
+SET nDur0:(0)
+
+# -------------------------------------------------------------------------
+# INSTAN?IERE OBIECTE
+# -------------------------------------------------------------------------
+
+# 1. Start Event
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nStartClassId) objname:"12:00 AM - Midnight Check"
+SET nStartId:(objid)
+CC "Core" SET_ATTR_VAL objid:(nStartId) attrname:"Position" val:"NODE x:3cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nStartId) attrname:"TextPosition" val:"Bottom"
+
+# ================= CAMERA 1: KidsDorm1 =================
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nVerificationClassId) objname:"MSensor1 = Fara Miscare?"
+SET nCheck1Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nCheck1Id) attrname:"Position" val:"NODE x:9cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nCheck1Id) attrname:"TextPosition" val:"Top"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"RoomLight1 OFF"
+SET nL1Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nL1Id) attrname:"Position" val:"NODE x:14cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nL1Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nL1Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nL1Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"SmartTV1 OFF"
+SET nTV1Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nTV1Id) attrname:"Position" val:"NODE x:19cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nTV1Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nTV1Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nTV1Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"Shutter1 Close"
+SET nS1Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nS1Id) attrname:"Position" val:"NODE x:24cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nS1Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nS1Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nS1Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"AirConditioner1 Set 19C"
+SET nAC1Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nAC1Id) attrname:"Position" val:"NODE x:29cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nAC1Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nAC1Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nAC1Id) attrname:"DurationType" val:"sec"
+
+
+# ================= CAMERA 2: KidsDorm2 =================
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nVerificationClassId) objname:"MSensor2 = Fara Miscare?"
+SET nCheck2Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nCheck2Id) attrname:"Position" val:"NODE x:34cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nCheck2Id) attrname:"TextPosition" val:"Top"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"RoomLight2 OFF"
+SET nL2Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nL2Id) attrname:"Position" val:"NODE x:39cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nL2Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nL2Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nL2Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"SmartTV2 OFF"
+SET nTV2Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nTV2Id) attrname:"Position" val:"NODE x:44cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nTV2Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nTV2Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nTV2Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"Shutter2 Close"
+SET nS2Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nS2Id) attrname:"Position" val:"NODE x:49cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nS2Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nS2Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nS2Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"AirConditioner2 Set 19C"
+SET nAC2Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nAC2Id) attrname:"Position" val:"NODE x:54cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nAC2Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nAC2Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nAC2Id) attrname:"DurationType" val:"sec"
+
+
+# ================= CAMERA 3: ParentsDorm =================
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nVerificationClassId) objname:"MSensor3 = Fara Miscare?"
+SET nCheck3Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nCheck3Id) attrname:"Position" val:"NODE x:59cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nCheck3Id) attrname:"TextPosition" val:"Top"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"RoomLight3 OFF"
+SET nL3Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nL3Id) attrname:"Position" val:"NODE x:64cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nL3Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nL3Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nL3Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"SmartTV3 OFF"
+SET nTV3Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nTV3Id) attrname:"Position" val:"NODE x:69cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nTV3Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nTV3Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nTV3Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"Shutter3 Close"
+SET nS3Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nS3Id) attrname:"Position" val:"NODE x:74cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nS3Id) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nS3Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nS3Id) attrname:"DurationType" val:"sec"
+
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClassId) objname:"AirConditioner3 Set 19C"
+SET nAC3Id:(objid)
+CC "Core" SET_ATTR_VAL objid:(nAC3Id) attrname:"Position" val:"NODE x:79cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nAC3Id) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nAC3Id) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nAC3Id) attrname:"DurationType" val:"sec"
+
+
+# 5. End Event
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nEndClassId) objname:"End Midnight Routine"
+SET nEndId:(objid)
+CC "Core" SET_ATTR_VAL objid:(nEndId) attrname:"Position" val:"NODE x:85cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nEndId) attrname:"TextPosition" val:"Bottom"
+
+
+# -------------------------------------------------------------------------
+# GENERARE CONECTORI (Linii sigure)
+# -------------------------------------------------------------------------
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nStartId) toobjid:(nCheck1Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# --- RUTE KIDS DORM 1 ---
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck1Id) toobjid:(nCheck2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck1Id) toobjid:(nL1Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nL1Id) toobjid:(nTV1Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nTV1Id) toobjid:(nS1Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nS1Id) toobjid:(nAC1Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nAC1Id) toobjid:(nCheck2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# --- RUTE KIDS DORM 2 ---
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck2Id) toobjid:(nCheck3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck2Id) toobjid:(nL2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nL2Id) toobjid:(nTV2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nTV2Id) toobjid:(nS2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nS2Id) toobjid:(nAC2Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nAC2Id) toobjid:(nCheck3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# --- RUTE PARENTS DORM ---
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck3Id) toobjid:(nEndId)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nCheck3Id) toobjid:(nL3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nL3Id) toobjid:(nTV3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nTV3Id) toobjid:(nS3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nS3Id) toobjid:(nAC3Id)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClassId) fromobjid:(nAC3Id) toobjid:(nEndId)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# --- FINALIZARE ---
+CC "Core" SAVE_MODEL modelid:(nModelId)
+CC "Modeling" REBUILD_DRAWING_AREA modelid:(nModelId)
+
+CC "AdoScript" INFOBOX ("Zig-Zag generat perfect!\nAc?iunile coboara sub axa principala formând valuri cu o distan?a de minim 5cm pe X, iar etichetele de text alterneaza inteligent pentru lizibilitate maxima.")

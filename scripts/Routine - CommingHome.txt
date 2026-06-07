@@ -1,0 +1,108 @@
+# Initializare si Eliberare Memorie Core
+CC "Modeling" GET_ACT_MODEL
+SET nModelId:(modelid)
+
+IF (nModelId = -1) {
+   CC "AdoScript" ERRORBOX ("Te rog sa deschizi un model inainte de a rula scriptul!")
+   EXIT
+}
+
+CC "Core" DISCARD_MODEL modelid:(nModelId)
+CC "Core" LOAD_MODEL modelid:(nModelId)
+
+# Definirea Variabilelor Integer
+SET nDur0:(0)
+SET nDur15:(15)
+
+# Preluarea ID-urilor pentru Clase
+CC "Core" GET_CLASS_ID classname:"Start Event"
+SET nStartClass:(classid)
+CC "Core" GET_CLASS_ID classname:"Verification"
+SET nVerifClass:(classid)
+CC "Core" GET_CLASS_ID classname:"Action"
+SET nActionClass:(classid)
+CC "Core" GET_CLASS_ID classname:"End Event"
+SET nEndClass:(classid)
+CC "Core" GET_CLASS_ID classname:"Flow"
+SET nFlowClass:(classid)
+
+# -----------------------------------------------------------------
+# Creare Noduri (Elemente Grafice)
+# -----------------------------------------------------------------
+
+# 1. Start Event - Declan?are pe intrare (Senzor MSensorEntry)
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nStartClass) objname:"Trigger_MSensorEntry"
+SET nStart:(objid)
+CC "Core" SET_ATTR_VAL objid:(nStart) attrname:"Position" val:"x:3cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nStart) attrname:"TextPosition" val:"Top"
+
+# 2. Verification - Verificare mi?care în tot apartamentul
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nVerifClass) objname:"Check_No_Movement_15m"
+SET nVerif:(objid)
+CC "Core" SET_ATTR_VAL objid:(nVerif) attrname:"Position" val:"x:9cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nVerif) attrname:"TextPosition" val:"Top"
+
+# 3. End Event (Ramura FALSE) - A existat mi?care recenta, se opre?te rutina
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nEndClass) objname:"End_Movement_Detected"
+SET nEndFalse:(objid)
+CC "Core" SET_ATTR_VAL objid:(nEndFalse) attrname:"Position" val:"x:15cm y:5cm"
+CC "Core" SET_ATTR_VAL objid:(nEndFalse) attrname:"TextPosition" val:"Top"
+
+# 4. Action (Ramura TRUE - Zig-Zag Pas 1) - Deschidere draperii LivingRoom
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClass) objname:"Open_Shutter0"
+SET nAct1:(objid)
+CC "Core" SET_ATTR_VAL objid:(nAct1) attrname:"Position" val:"x:15cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nAct1) attrname:"TextPosition" val:"Top"
+CC "Core" SET_ATTR_VAL objid:(nAct1) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nAct1) attrname:"DurationType" val:"sec"
+
+# 5. Action (Ramura TRUE - Zig-Zag Pas 2) - Pornire muzica LivingRoom
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nActionClass) objname:"Play_Speaker0"
+SET nAct2:(objid)
+CC "Core" SET_ATTR_VAL objid:(nAct2) attrname:"Position" val:"x:20cm y:11cm"
+CC "Core" SET_ATTR_VAL objid:(nAct2) attrname:"TextPosition" val:"Bottom"
+CC "Core" SET_ATTR_VAL objid:(nAct2) attrname:"Duration" val:(nDur0)
+CC "Core" SET_ATTR_VAL objid:(nAct2) attrname:"DurationType" val:"sec"
+
+# 6. End Event (Ramura TRUE - Final Zig-Zag Pas 3) - Finalizare ac?iuni
+CC "Core" CREATE_OBJ modelid:(nModelId) classid:(nEndClass) objname:"Routine_CommingHome_Done"
+SET nEndTrue:(objid)
+CC "Core" SET_ATTR_VAL objid:(nEndTrue) attrname:"Position" val:"x:25cm y:8cm"
+CC "Core" SET_ATTR_VAL objid:(nEndTrue) attrname:"TextPosition" val:"Top"
+
+# -----------------------------------------------------------------
+# Creare Conectori (Flows)
+# -----------------------------------------------------------------
+
+# Flow: Start -> Verification
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClass) fromobjid:(nStart) toobjid:(nVerif)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# Flow: Verification -> End (Mi?care detectata)
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClass) fromobjid:(nVerif) toobjid:(nEndFalse)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# Flow: Verification -> Open Shutter (Nicio mi?care)
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClass) fromobjid:(nVerif) toobjid:(nAct1)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# Flow: Open Shutter -> Play Music
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClass) fromobjid:(nAct1) toobjid:(nAct2)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# Flow: Play Music -> End (Final Ramura True)
+CC "Core" CREATE_CONNECTOR modelid:(nModelId) classid:(nFlowClass) fromobjid:(nAct2) toobjid:(nEndTrue)
+SET nC:(objid)
+CC "Core" SET_ATTR_VAL objid:(nC) attrname:"Positions" val:""
+
+# -----------------------------------------------------------------
+# Salvare ?i Reconstruc?ie Interfa?a Grafica
+# -----------------------------------------------------------------
+
+CC "Core" SAVE_MODEL modelid:(nModelId)
+CC "Modeling" REBUILD_DRAWING_AREA modelid:(nModelId)
+CC "AdoScript" INFOBOX ("Rutina CommingHome a fost generata si desenata pe canvas cu succes!")

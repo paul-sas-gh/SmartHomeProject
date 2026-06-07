@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ADOXML SYSTEM "adoxml31.dtd">
+<ADOXML version="3.1" date="07.06.2026" time="01:07" database="adoxx18" username="smart" adoversion="Version 1.8">
+<MODELS>
+<MODEL id="mod.18204" name="SmartHome -2" version="" modeltype="SmartHomeArchitecture" libtype="bp" applib="ADOxx 1.8 - OMiLAB SmatHome Library v1.2.3 (Dynamic)">
+<MODELATTRIBUTES>
+<ATTRIBUTE name="Version number" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Author" type="STRING">smart</ATTRIBUTE>
+<ATTRIBUTE name="Creation date" type="STRING">06.06.2026, 06:14</ATTRIBUTE>
+<ATTRIBUTE name="Date last changed" type="STRING">07.06.2026, 01:02:32</ATTRIBUTE>
+<ATTRIBUTE name="Last user" type="STRING">smart</ATTRIBUTE>
+<ATTRIBUTE name="Keywords" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Comment" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Model type" type="ENUMERATION">Current model</ATTRIBUTE>
+<ATTRIBUTE name="State" type="ENUMERATION">In process</ATTRIBUTE>
+<ATTRIBUTE name="Reviewed on" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Reviewed by" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Description" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Number of objects and relations" type="INTEGER">88</ATTRIBUTE>
+<ATTRIBUTE name="World area" type="STRING">w:24.17cm h:27.84cm minw:5cm minh:5cm</ATTRIBUTE>
+<ATTRIBUTE name="Grid" type="STRING">GRID snap:on visible:off w:.25cm h:.25cm</ATTRIBUTE>
+<ATTRIBUTE name="Zoom" type="INTEGER">100</ATTRIBUTE>
+<ATTRIBUTE name="Viewable area" type="STRING">VIEW representation:graphic
+GRAPHIC x:-16 y:-16 w:1593 h:940 scale:1
+TABLE
+</ATTRIBUTE>
+<ATTRIBUTE name="Current mode" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Base name" type="STRING">SmartHome -2</ATTRIBUTE>
+<ATTRIBUTE name="Access state" type="ENUMERATION">write</ATTRIBUTE>
+<ATTRIBUTE name="Current page layout" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Connector marks" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Type" type="STRING">SmartHomeArchitecture</ATTRIBUTE>
+<ATTRIBUTE name="Change counter" type="INTEGER">1056</ATTRIBUTE>
+<ATTRIBUTE name="Font size" type="INTEGER">0</ATTRIBUTE>
+<ATTRIBUTE name="Context of version" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Position" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18204</ATTRIBUTE>
+<ATTRIBUTE name="__GfxThumb__" type="LONGSTRING">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</ATTRIBUTE>
+<ATTRIBUTE name="model-id" type="EXPRESSION">EXPR val:18204</ATTRIBUTE>
+</MODELATTRIBUTES>
+<INSTANCE id="obj.18206" class="Floor" name="Apartment1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:11.5cm y:12cm w:20.5cm h:21.75cm index:1</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18206</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18209" class="Room" name="KidsDorm1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.75cm y:5.12cm w:9.25cm h:7.25cm index:3</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18209</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18215" class="Sensor" name="TSensor1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.5cm y:7.75cm index:4</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18215</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">temparature-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18218" class="Sensor" name="MSensor1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13cm y:7.25cm index:5</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18218</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18230" class="Actuator" name="Speaker1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20cm y:2.5cm index:6</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18230</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">speaker</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18233" class="Actuator" name="Speaker2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:19.5cm y:8cm index:7</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18233</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">speaker</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18236" class="Actuator" name="SmartTV1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20.5cm y:4.25cm index:8</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18236</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">smart-tv</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18239" class="Actuator" name="Shutter1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:17cm y:2.25cm index:9</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18239</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">actuator</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18242" class="Room" name="KidsDorm2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.75cm y:12.25cm w:9.25cm h:6.75cm index:10</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18242</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18245" class="Actuator" name="RoomLight1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:18cm y:5.25cm index:11</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18245</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">light-bulb</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18260" class="Sensor" name="TSensor2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20.75cm y:10.75cm index:12</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18260</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">temparature-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18263" class="Sensor" name="MSensor2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13cm y:13.5cm index:13</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18263</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18266" class="Actuator" name="Speaker3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13cm y:14.75cm index:14</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18266</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">speaker</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18269" class="Actuator" name="Speaker4">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20.25cm y:14.75cm index:15</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18269</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">speaker</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18272" class="Actuator" name="SmartTV2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.25cm y:14.75cm index:16</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18272</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">smart-tv</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18275" class="Actuator" name="Shutter2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20.75cm y:12cm index:17</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18275</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">actuator</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18278" class="Actuator" name="RoomLight2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:18.75cm y:12.75cm index:18</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18278</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">light-bulb</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18335" class="Room" name="ParentsDorm">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.75cm y:19cm w:9.25cm h:6.75cm index:19</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18335</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18338" class="Sensor" name="TSensor3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16cm y:16.5cm index:20</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18338</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">temparature-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18341" class="Actuator" name="SmartTV3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20.5cm y:20.75cm index:21</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18341</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">smart-tv</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18344" class="Actuator" name="RoomLight3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:17cm y:18.75cm index:22</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18344</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">light-bulb</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18347" class="Actuator" name="Shutter3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:16.75cm y:21.5cm index:23</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18347</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">actuator</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18350" class="Sensor" name="MSensor3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:20cm y:16.5cm index:24</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18350</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18353" class="Room" name="LivingRoom">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6.75cm y:8.25cm w:10.5cm h:9.75cm index:25</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18353</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18356" class="Room" name="kitchen">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6.75cm y:17.87cm w:10.5cm h:9.25cm index:26</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18356</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18359" class="Actuator" name="Shutter0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:2.25cm y:8cm index:27</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18359</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">actuator</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18362" class="Actuator" name="SmartTV0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6.75cm y:12.25cm index:28</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18362</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">smart-tv</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18365" class="Actuator" name="Speaker0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:8.5cm y:12.25cm index:29</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18365</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">speaker</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18368" class="Actuator" name="RoomLight0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:10cm y:9cm index:30</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18368</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">light-bulb</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18371" class="Actuator" name="RoomLight4">
+<ATTRIBUTE name="Position" type="STRING">NODE x:8cm y:17.25cm index:31</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18371</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">light-bulb</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18374" class="Actuator" name="AirCondtioner1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:14.75cm y:8cm index:32</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18374</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">air-conditioner</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18377" class="Actuator" name="AirCondtioner2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:19.5cm y:9.5cm index:33</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18377</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">air-conditioner</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18380" class="Actuator" name="AirCondtioner3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13.5cm y:21.5cm index:34</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18380</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">air-conditioner</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18383" class="Actuator" name="AirCondtioner0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:10.75cm y:5.5cm index:35</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18383</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">air-conditioner</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.18386" class="Actuator" name="CoffeMachine">
+<ATTRIBUTE name="Position" type="STRING">NODE x:2.75cm y:21.5cm index:36</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:18386</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">coffee-machine</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19195" class="Smart Hub" name="Smart Hub">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6.75cm y:4.5cm index:37</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19195</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING">WI-FI</ATTRIBUTE>
+<ATTRIBUTE name="Type" type="ENUMERATION">SimpleHub</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19381" class="Sensor" name="MSensorEntry">
+<ATTRIBUTE name="Position" type="STRING">NODE x:10.5cm y:2.25cm index:38</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19381</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19384" class="Sensor" name="MSensor0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:2.75cm y:12.25cm index:39</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19384</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19387" class="Sensor" name="MSensor4">
+<ATTRIBUTE name="Position" type="STRING">NODE x:9.75cm y:14cm index:40</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19387</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">movement-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19522" class="Smart Hub" name="Smart Hub 1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13.25cm y:4cm index:48</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19522</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING">WI-FI</ATTRIBUTE>
+<ATTRIBUTE name="Type" type="ENUMERATION">SimpleHub</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19525" class="Smart Hub" name="Smart Hub 3">
+<ATTRIBUTE name="Position" type="STRING">NODE x:13.25cm y:18.5cm index:49</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19525</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING">WI-FI</ATTRIBUTE>
+<ATTRIBUTE name="Type" type="ENUMERATION">SimpleHub</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Bottom</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19528" class="Smart Hub" name="Smart Hub2">
+<ATTRIBUTE name="Position" type="STRING">NODE x:12.75cm y:11.25cm index:50</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19528</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING">WI-FI</ATTRIBUTE>
+<ATTRIBUTE name="Type" type="ENUMERATION">SimpleHub</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19556" class="Smart Hub" name="Smart Hub 4">
+<ATTRIBUTE name="Position" type="STRING">NODE x:5cm y:14.5cm index:76</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19556</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING">WI-FI</ATTRIBUTE>
+<ATTRIBUTE name="Type" type="ENUMERATION">SimpleHub</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Bottom</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19563" class="Actuator" name="Alarm1">
+<ATTRIBUTE name="Position" type="STRING">NODE x:2.25cm y:14.75cm index:81</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19563</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19566" class="Actuator" name="Alarm0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:.75cm y:2.25cm index:82</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19566</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Picture" type="STRING">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">alarm-bell</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19574" class="Room" name="EntryRoom">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6.75cm y:2.37cm w:10.5cm h:1.75cm index:2</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19574</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19577" class="Sensor" name="SmokeSensor">
+<ATTRIBUTE name="Position" type="STRING">NODE x:6cm y:21.5cm index:85</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19577</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">smoke-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<INSTANCE id="obj.19581" class="Sensor" name="Tsensor0">
+<ATTRIBUTE name="Position" type="STRING">NODE x:2.25cm y:4.75cm index:87</ATTRIBUTE>
+<ATTRIBUTE name="External tool coupling" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="object-id" type="EXPRESSION">EXPR val:19581</ATTRIBUTE>
+<ATTRIBUTE name="URI" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="Protocol" type="STRING"></ATTRIBUTE>
+<ATTRIBUTE name="type" type="ENUMERATION">temparature-sensor</ATTRIBUTE>
+<ATTRIBUTE name="TextPosition" type="ENUMERATION">Top</ATTRIBUTE>
+</INSTANCE>
+<CONNECTOR id="con.19515" class="Communicates With">
+<FROM instance="MSensorEntry" class="Sensor"></FROM>
+<TO instance="Smart Hub" class="Smart Hub"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:41</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19516" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="AirCondtioner0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:42</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19517" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Shutter0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:43</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19518" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="RoomLight0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:44</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19519" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="MSensor0" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:45</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19520" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="SmartTV0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:46</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19521" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Speaker0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:47</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19531" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Smart Hub 1" class="Smart Hub"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:51</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19532" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Smart Hub2" class="Smart Hub"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:52</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19533" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Smart Hub 3" class="Smart Hub"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:53</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19534" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="AirCondtioner3" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:54</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19535" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="RoomLight3" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:55</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19536" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="TSensor3" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:56</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19537" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="Shutter3" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:57</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19538" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="SmartTV3" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:58</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19539" class="Communicates With">
+<FROM instance="Smart Hub 3" class="Smart Hub"></FROM>
+<TO instance="MSensor3" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:59</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19540" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="MSensor2" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:60</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19541" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="SmartTV2" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:61</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19542" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="RoomLight2" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:62</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19543" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="TSensor2" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:63</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19544" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="AirCondtioner2" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:64</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19545" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="Shutter2" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:65</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19546" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="Speaker3" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 1 x1:14.25cm y1:14.75cm index:66</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19547" class="Communicates With">
+<FROM instance="Smart Hub2" class="Smart Hub"></FROM>
+<TO instance="Speaker4" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:67</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19548" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="Shutter1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:68</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19549" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="Speaker1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:69</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19550" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="SmartTV1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:70</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19551" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="RoomLight1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:71</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19552" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="MSensor1" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:72</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19553" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="AirCondtioner1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:73</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19554" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="TSensor1" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:74</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19555" class="Communicates With">
+<FROM instance="Smart Hub 1" class="Smart Hub"></FROM>
+<TO instance="Speaker2" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:75</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19559" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Smart Hub 4" class="Smart Hub"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:77</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19560" class="Communicates With">
+<FROM instance="Smart Hub 4" class="Smart Hub"></FROM>
+<TO instance="CoffeMachine" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:78</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19561" class="Communicates With">
+<FROM instance="Smart Hub 4" class="Smart Hub"></FROM>
+<TO instance="RoomLight4" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:79</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19562" class="Communicates With">
+<FROM instance="Smart Hub 4" class="Smart Hub"></FROM>
+<TO instance="MSensor4" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:80</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19569" class="Communicates With">
+<FROM instance="Smart Hub 4" class="Smart Hub"></FROM>
+<TO instance="Alarm1" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:83</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19570" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Alarm0" class="Actuator"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:84</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19580" class="Communicates With">
+<FROM instance="Smart Hub 4" class="Smart Hub"></FROM>
+<TO instance="SmokeSensor" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:86</ATTRIBUTE>
+</CONNECTOR>
+<CONNECTOR id="con.19584" class="Communicates With">
+<FROM instance="Smart Hub" class="Smart Hub"></FROM>
+<TO instance="Tsensor0" class="Sensor"></TO>
+<ATTRIBUTE name="Positions" type="STRING">EDGE 0 index:88</ATTRIBUTE>
+</CONNECTOR>
+</MODEL>
+</MODELS>
+</ADOXML>

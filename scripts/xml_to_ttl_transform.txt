@@ -1,0 +1,1 @@
+ java -jar .\rdf-transformation.jar -mm-in "SmartHomeModel.xml" -mm-uri "smarthome.spg" -mm-out "SmartHomeModel.ttl" -uri-cri
